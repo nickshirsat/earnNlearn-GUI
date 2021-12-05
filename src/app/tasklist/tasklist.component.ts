@@ -65,7 +65,7 @@ editDetails(){
   alert('Confirm To Delete  '+taskItr.tid);
   this._taskListService.deleteById(taskItr.tid).subscribe(
     res => {
-      alert('Succesfuly Deleted');
+      alert('Succesfuly Deleted !..');
       this.taskListBean.splice(i, 1);
     },
     err => {
