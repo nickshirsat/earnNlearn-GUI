@@ -1,0 +1,205 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<ng-container *ngIf='isHidder'>
+  <div class="login-form">
+    <div class="topnav" style="margin: 3%;background-color: aliceblue;">
+      <button class="active" class="btn" (click)="onboard(param='home')">Home</button>
+      <button class="btn" (click)="onboard(param='add')">Add Task</button>
+      <button class="btn" (click)="onboard(param='viewTask')">View Task</button>
+      <button class="btn" (click)="onboard(param='delete')">Delete Task</button>
+      <button class="btn" (click)="onboard(param='report')">Report</button>
+    </div>
+    <div style="margin: 3%;">
+      <ng-container *ngIf="showView=='home'?true:false;">
+        <section>
+          <div class="rt-container">
+            <div class="col-rt-12">
+              <div class="Scriptcontent">
+                <div class="student-profile py-4">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="card shadow-sm">
+                          <div class="card-header bg-transparent text-center">
+                            <img class="profile_img" src="../../assets/images/user.jpg" style="height: 250px;"
+                              alt="student dp">
+                            <h3> {{userModal.name}}</h3>
+                          </div>
+                          <div class="card-body">
+                            <p class="mb-0"><strong class="pr-1">Student ID:</strong>{{userModal.uid}}</p>
+                            <!-- <p class="mb-0"><strong class="pr-1">Class:</strong>{{userModal.uid}}</p> -->
+                            <p class="mb-0"><strong class="pr-1">Section:</strong>{{userModal.email}}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-8 ">
+                        <div class="card shadow-sm">
+                          <div class="card-header bg-transparent border-0">
+                            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
+                          </div>
+                          <div class="card-body pt-0">
+                            <table class="table table-bordered">
+                              <tr>
+                                <th width="30%">Roll ID</th>
+                                <td width="2%">:</td>
+                                <td>{{userModal.uid}}</td>
+                              </tr>
+                              <tr>
+                                <th width="30%">Academic Year </th>
+                                <td width="2%">:</td>
+                                <td>{{userModal.createdOn | date:'MM/dd/yyyy h:mm a'}}</td>
+                              </tr>
+
+                              <tr>
+                                <th width="30%">Email</th>
+                                <td width="2%">:</td>
+                                <td>{{userModal.email}}</td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </ng-container>
+      <ng-container *ngIf="showView=='add'?true:false;">
+
+        <div style="margin-right: 35%;">
+          <strong>Upcoming Task Details</strong>
+          <div class="card-body login-form " *ngFor="let taskItem of  taskListBean,let i=index">
+            <h3 class="card-title">{{taskItem.name}}</h3>
+            <hr style="width: 100%;color: #000;">
+            <div class="row">
+              <p class="card-text col"  >Comment : {{taskItem.comment}}</p>&nbsp;&nbsp;&nbsp;
+              <p class="card-text col">Quantity : {{taskItem.quantity}}</p>&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-info button-4 col" role="button" (click)="clickEvent(i)" style="float: right;">Details</button>
+            </div>
+            <div [hidden]="status" *ngIf="i==activeIndex">
+              <p class="card-text" style="float: left;">{{taskItem.email}}</p>
+              <p class="card-text">created Date : {{taskItem.createdOn | date:'MM/dd/yyyy h:mm a'}}</p>
+              <p class="card-text">Modified Date : {{taskItem.modifiedOn | date:'MM/dd/yyyy h:mm a'}}</p>
+              <button class="btn btn-info" (click)="getTaskDetail()" name="submitTask">Add Task</button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showView=='delete'?true:false;">
+        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="background-color: aliceblue;"
+        cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="th-sm">Task ID</th>
+                <th class="th-sm">Comment</th>
+                <th class="th-sm">createdOn</th>
+                <th class="th-sm">Description</th>
+                <th class="th-sm">End Date</th>
+                <th class="th-sm">Name</th>
+                <th class="th-sm">Quantity</th>
+                <th class="th-sm">Start Date</th>
+                <th class="th-sm">Status</th>
+                <th class="th-sm">Operation</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let taskItr of taskListByUser.taskList,let i=index">
+                
+                <td  >{{taskItr.tid}}</td>
+                <td  >{{taskItr.comment}}</td>
+                <td >{{taskItr.createdOn  | date:'MM/dd/yyyy h:mm a'}}</td>
+                <td  >{{taskItr.description}}</td>
+                <td  >{{taskItr.endDate | date:'MM/dd/yyyy h:mm a'}}</td>
+                <td  >{{taskItr.name}}</td>
+                <td  >{{taskItr.quantity}}</td>
+                <td >{{taskItr.startDate | date:'MM/dd/yyyy h:mm a'}}</td>
+                <td  >{{taskItr.status}}</td>
+                 <td  ><button  class="btn" name="deleteBtn" (click)='deleteUser(taskItr,taskListBean.taskList,i)'><i class="fa fa-trash-alt"></i></button></td>
+               
+            </tr>
+        </tbody>
+        
+    </table>
+      </ng-container>
+      <ng-container *ngIf="showView=='update'?true:false;">
+        <h2>Update</h2>
+      </ng-container>
+      <ng-container class="row" *ngIf="showView=='viewTask'?true:false;">
+        <h3 style="text-align: center;color: blueviolet;">Today</h3>
+        <div class="card-body login-form col" *ngFor="let taskItem of  taskListBean,let i=index">
+          <div class="row">
+          <h3 class="card-title col" style="padding: 2px;">{{taskItem.name}}</h3> 
+          <h5 class="card-text col" style="padding: 2px;float: right;">{{taskItem.createdOn | date:'h:mm a'}}</h5> 
+          </div>
+          <hr style="width: 100%;color: #000;">
+          <div class="row">
+            <p class="card-text col"  >Comment : {{taskItem.comment}}</p>&nbsp;&nbsp;&nbsp;
+            <p class="card-text col">Quantity : {{taskItem.quantity}}</p>&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-info button-4 col" role="button" (click)="clickEvent(i)" style="float: right;">Details</button>
+          </div>
+          <div [hidden]="status" *ngIf="i==activeIndex">
+            <p class="card-text" style="float: left;">{{taskItem.email}}</p>
+            <p class="card-text">created Date : {{taskItem.createdOn}}</p>
+            <p class="card-text">Modified Date : {{taskItem.modifiedOn}}</p>
+            <button class="btn btn-info" (click)="getTaskDetail()" name="submitTask">Start Task</button>
+          </div>
+        </div>
+        <h3 style="text-align: center;color: blueviolet;">Previous Task</h3>
+        <div class="card-body login-form  col" *ngFor="let taskItem of  taskListBean,let i=index">
+          <div class="row">
+          <h3 class="card-title col" style="padding: 2px;">{{taskItem.name}}</h3> 
+          <h5 class="card-text col" style="padding: 2px;float: right;">{{taskItem.createdOn | date:'h:mm a'}}</h5> 
+          </div>
+          <hr style="width: 100%;color: rgb(150, 140, 140);">
+          <div class="row">
+            <p class="card-text col"  >Comment : {{taskItem.comment}}</p>&nbsp;&nbsp;&nbsp;
+            <p class="card-text col">Quantity : {{taskItem.quantity}}</p>&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-info button-4 col" role="button" (click)="clickEvent(i)" style="float: right;">Details</button>
+          </div>
+          <div [hidden]="status" *ngIf="i==activeIndex">
+            <p class="card-text" style="float: left;">{{taskItem.email}}</p>
+            <p class="card-text">created Date : {{taskItem.createdOn}}</p>
+            <p class="card-text">Modified Date : {{taskItem.modifiedOn}}</p>
+            <button class="btn btn-info" (click)="getTaskDetail()" name="submitTask">Start Task</button>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="showView=='report'?true:false;">
+        <form method="post" #form="ngForm">
+          <h1>Report Details</h1>
+         <div class="content">
+             <button class="btn btn-info" style="float: left;"  >&#8249;</button>
+           <div class="input-field">
+               <input type="Task Name" placeholder="Task ID" [(ngModel)]=reportModel.id name="id" id="id" autocomplete="nope" [disabled]='true'>
+             </div>
+           <div class="input-field">
+             <input type="Task TransactionId" placeholder="Task Transaction ID" [(ngModel)]=reportModel.transactionId name="transactionId" id="transactionId" autocomplete="nope" [disabled]='desiderReporter'>
+           </div>
+           <div class="input-field">
+             <input type="text" placeholder="Task status" [(ngModel)]=reportModel.status name="status" id="status" autocomplete="nope" [disabled]='desiderReporter'>
+           </div>
+            <div class="input-field">
+             <input type="text" placeholder="Modified Date" [(ngModel)]=reportModel.modifiedOn name="modifiedOn" id="modifiedOn" autocomplete="new-password" [disabled]='desiderReporter'>
+           </div>
+            
+            <div class="input-field">
+             <input type="" placeholder="Task crated Date" [(ngModel)]=reportModel.cratedOn name="cratedOn" id="comment" autocomplete="nope" [disabled]='desiderReporter'>
+           </div>
+           
+         
+         </div>
+         <div class="action">
+           <button type="submit" class="btn btn-info"   >Cancel</button>
+           <!-- <button type="submit" (click)="putDetail(this.taskModel)">Submit</button> -->
+         </div>
+       </form>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+<app-user [hidden]='isHidder' (userConfirmation)="ngAfterContentInit($event)"></app-user>

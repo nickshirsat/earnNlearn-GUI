@@ -1,0 +1,40 @@
+
+showcase h1{
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+#courses{
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+#courses img{
+  width: 200px;
+  border-radius: 10px ;
+   margin: auto;
+  box-shadow: 2px 4px 14px 15px rgba(0, 0, 0, 0.1);
+
+}
+
+.apply{
+  margin-top: 4%;
+  background-color: orangered;
+  padding: 0.7rem 1rem;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
+footer{
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1.2rem;
+  margin-top: 4%;
+}
+.about{
+  padding: 30px;
+}

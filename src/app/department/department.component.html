@@ -1,0 +1,98 @@
+<p>department works!</p>
+
+
+<section>
+    <div class="rt-container">
+          <div class="col-rt-12">
+              <div class="Scriptcontent">
+              
+ College Profile
+<div class="student-profile py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent text-center">
+            <img class="profile_img" src="../../assets/images/unipune.jpg" style="width:90%" alt="student dp">
+            <h3>University Of Pune</h3>
+          </div>
+          <div class="card-body">
+            <p class="mb-0"><strong class="pr-1">College ID:</strong>321000001</p>
+            <p class="mb-0"><strong class="pr-1">City:</strong>Nashik</p>
+            <p class="mb-0"><strong class="pr-1">Section:</strong>A</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
+          </div>
+          <ng-container >
+          
+            <div class="login-form"   style="margin:4%;width: 90%;">
+                <form method="post" #form="ngForm">
+                   <h1>Department Details</h1>
+                  <div class="content">
+                     <div class="input-field">
+                        <input type="Task Name" placeholder="Department ID" [(ngModel)]=departmentModel.did name="id" id="id" autocomplete="nope" [disabled]='true'>
+                      </div>
+                    <div class="input-field">
+                      <input type="Task TransactionId" placeholder="Task Transaction ID" [(ngModel)]=departmentModel.name name="name" id="name" autocomplete="nope" >
+                    </div>
+                     <div class="input-field">
+                      <input type="date" placeholder="Modified Date" [(ngModel)]=departmentModel.modifiedOn name="modifiedOn" id="modifiedOn" autocomplete="new-password" >
+                    </div>
+                     
+                     <div class="input-field">
+                      <input type="" placeholder="Task crated Date" [(ngModel)]=departmentModel.createdOn name="createdOn" id="cratedOn" autocomplete="nope"  >
+                    </div>
+                  </div>
+                  <div class="action">
+                    <button type="submit" class="btn btn-info"   >Submit</button>
+                    <!-- <button type="submit" (click)="putDetail(this.taskModel)">Submit</button> -->
+                  </div>
+                </form>
+              </div>
+           </ng-container>
+
+        </div>
+
+         
+            
+       </div>
+    </div>
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="background-color: aliceblue;"
+    cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th class="th-sm">Department Id</th>
+            <th class="th-sm">Transaction Id</th>
+            <th class="th-sm">Modified On</th>
+            <th class="th-sm">Crated  On</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let deptItr of departmentList,let i=index">
+            <td><input [(ngModel)]="deptItr.tid" class="form-control" type="number" name="{{deptItr.uid}}" [disabled]='desider'/></td>
+            <td><input [(ngModel)]="deptItr.name" class="form-control" type="text" name="{{deptItr.name}}" [disabled]='desider'/></td>               
+            <td><input [(ngModel)]="deptItr.description" class="form-control" type="text" name="{{deptItr.description}}" [disabled]='desider'/></td>   
+            <td><input [(ngModel)]="deptItr.comment" class="form-control" type="text" name="{{deptItr.comment}}" [disabled]='desider'/></td>    
+             
+            <td class='row'>
+                <button name="editbtn" class="btn col-md-4" (click)="editDetails()"><i class="fa fa-edit"></i></button>
+                <button name="putData" class="btn col-md-4" (click)="submitResult(i,deptItr)"><i class="fa fa-check-square"></i></button>
+                <button name="deleteBtn" class="btn col-md-4" (click)='deletetask(deptItr,departmentList,i)'><i class="fas fa-trash-alt"></i></button>
+            </td>                
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+</div>
+            
+    		</div>
+		</div>
+    </div>
+</section>

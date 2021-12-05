@@ -1,0 +1,94 @@
+<div class="row" >
+  <div [hidden]="hideClass"  class="col" style="margin-top: 30px;">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <div class="login-form"  [hidden]="studData?true:false" style="padding-top:5%;padding-bottom:5%;padding: 5%;" >
+      <h2 class="text-left">User Registeration</h2><br>
+        <div class="row">
+          <div class="offset-3"></div>
+          <div class="col-md-6">
+            <form name="form" #f="ngForm" (ngSubmit)="registeruser(f)">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="text"
+                       id="email"
+                       class="form-control"
+                       name="email"
+                       placeholder="Email Address"
+                       [(ngModel)]="model.email"
+                       #name="ngModel"
+                       [ngClass]="{ 'is-invalid': f.submitted }"
+                       required  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                     
+                        
+              </div>
+  
+              <!-- Food Item -->
+              <div class="form-group">
+                <label for="name">User Name</label>
+                <input type="text"
+                       id="name"
+                       class="form-control"
+                       name="name"
+                       placeholder="Your Name"
+                       [(ngModel)]="model.name"
+                       #name="ngModel"
+                       [ngClass]="{ 'is-invalid': f.submitted }"
+                       required/>
+               
+              </div>
+      <!-- Hotel Id -->
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="text"
+                       id="password"
+                       class="form-control"
+                       name="password"
+                       placeholder="Enter Password"
+                       [(ngModel)]="model.password"
+                       #foodItemPrice="ngModel"
+                       [ngClass]="{ 'is-invalid': f.submitted }"
+                       required password/>
+                <!-- input validation group -->
+                <div *ngIf="f.submitted" class="invalid-input">
+                  
+                </div>
+              </div>  
+              <button type="submit" class="btn btn-info pull-right">
+                <i class="fa fa-envelope-o"></i>
+                <span>Register</span>
+              </button>
+            </form>
+          </div>
+          <div class="offset-3"></div>
+        </div>
+      </div>
+    </div> 
+
+
+<app-supervisorlist [hidden]="studData?false:true" style="margin-right: 40%;"></app-supervisorlist>
+
+
+<div class="login-form" style="margin-right: 3%;">
+  <form method="post" #form="ngForm">
+    <h1>Login</h1>
+    <div class="content">
+      <div class="input-field">
+        <input type="email" placeholder="Email" #uid name="uid" id="uid" autocomplete="nope">
+      </div>
+      <div class="input-field">
+        <input type="password" placeholder="Password" #upskw name="upskw" id="upskw" autocomplete="new-password">
+      </div>
+      <a href="#" class="link">Forgot Your Password?</a>
+    </div>
+    <div class="action">
+      <button type="submit" (click)="getAlert(uid)">Register</button>
+      <button type="submit" (click)="getDetails(this.uid,this.upskw,form)">Sign in</button>
+    </div>
+  </form>
+</div>
+
+</div>

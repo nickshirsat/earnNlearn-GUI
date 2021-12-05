@@ -1,0 +1,22 @@
+
+<ng-container *ngIf=!finishLogin>
+<div class="login-form"  style="align-content: center;" >
+    <form method="post" #form="ngForm">
+      <h1>Login</h1>
+      <div class="content">
+        <div class="input-field">
+          <input type="email" placeholder="Email" #uid name="uid" id="uid" autocomplete="nope">
+        </div>
+        <div class="input-field">
+          <input type="password" placeholder="Password" #upskw name="upskw" id="upskw" autocomplete="new-password">
+        </div>
+        <a href="#" class="link">Forgot Your Password?</a>
+      </div>
+      <div class="action">
+        <button type="submit" class="btn btn-primary" (click)="getDetails(this.uid,this.upskw,form)">Sign in</button>
+      </div>
+    </form>
+  </div>
+</ng-container>
+  <app-dashboard *ngIf="finishLogin"></app-dashboard>
+  

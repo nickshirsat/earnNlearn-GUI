@@ -1,0 +1,21 @@
+<p><strong>College Supervisor Details</strong></p>
+<div class="container" style="width: 55%;float: right;" >
+    
+     
+    <div style="   position: absolute;">
+       <div class="card-body login-form "  *ngFor="let listItr of  supervisorListBean,let i=index">
+        <h3 class="card-title"  >{{listItr.name}}</h3><hr style="width: 100%;color: #000;">
+        <div class="row">
+          <p class="card-text col" style="margin-left: 9%;"> {{listItr.role}}</p>&nbsp;&nbsp;&nbsp;
+          <p class="card-text col" style="margin-left: 9%;"> {{listItr.email}}</p>&nbsp;&nbsp;&nbsp;
+        <button class="button-4 col" role="button" (click)="clickEvent(i)" style="float: right;">Details</button>
+      </div>
+        <div [hidden]="status" *ngIf="i==activeIndex">
+          <p class="card-text" style="float: left;">Join Date : {{listItr.createdOn}}</p>
+          <p class="card-text">Modified Date : {{listItr.modifiedOn}}</p>
+          <!-- <button class="btn btn-info" (click)="getTaskDetail()" name="submitTask">Add Task</button> -->
+        </div>
+      </div>
+    </div> 
+  </div>
+  
