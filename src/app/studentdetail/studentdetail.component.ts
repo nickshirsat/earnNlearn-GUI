@@ -47,7 +47,7 @@ export class StudentdetailComponent implements OnInit {
   }
   ngAfterContentInit(){
     this.showView;
-
+    this.getAlluser();
   }
   get f() { return this.registerForm.controls; }
 
@@ -69,7 +69,8 @@ export class StudentdetailComponent implements OnInit {
           this.getAlluser();
         },
         err => {
-          alert("An error has occurred while sending feedback");
+          alert("Confirm");
+          this.getAlluser();
         }
       );
       }
@@ -99,7 +100,7 @@ export class StudentdetailComponent implements OnInit {
    getAlluser(){
     this._userService.getAllDetail().subscribe(
       (response) => {
-        this.userList=response;
+        this.userList=response.filter;
         console.log(response);
       }
     );
@@ -114,7 +115,7 @@ export class StudentdetailComponent implements OnInit {
         this.getAlluser();
       },
       err => {
-        alert("An error has occurred while sending feedback");
+        alert("Confirm");
       }
     );
    }
