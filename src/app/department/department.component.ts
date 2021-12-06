@@ -9,29 +9,42 @@ import { DepartmentconnectService } from '../service/departmentconnect.service';
 export class DepartmentComponent implements OnInit {
 
   departmentModel:department={
-    did: '',
-    name: '',
-    modifiedOn: '',
-    createdOn:'',
+    deptId:'',
+     name: '',
+     college: {'cid':'1'},
+     user:{'uid':'1'}
+     
   }
+   
   constructor(public _department:DepartmentconnectService) { }
   desider:boolean=true;
   departmentList:any;
+  collegeList:any;
   ngOnInit(): void {
   }
   ngAfterContentInit(){
     this._department.getDetail().subscribe(
       (response) => {
-        this.departmentList=response;
-        console.log(this.departmentList);
+         this.departmentList=response;
       }
     );
   }
   editDetails(){
     this.desider=!this.desider;
    }
-   submitResult(i:any,userItr:any){
-    this._department.putDataById(userItr).subscribe(
+   registerDeprtment(departmentModel:any){
+    this._department.createData(departmentModel).subscribe(
+      res => {
+          alert('Succesfuly Register');
+        // this.getAlluser();
+      },
+      err => {
+        alert("An error has occurred while sending feedback");
+      }
+    );
+   }
+   submitResult(i:any,deptItr:any){
+    this._department.putDataById(deptItr).subscribe(
       res => {
           alert('Succesfuly Register');
         // this.getAlluser();
@@ -56,8 +69,14 @@ export class DepartmentComponent implements OnInit {
 
 }
 export interface department{
-  did:string;
-  name:String;
-  modifiedOn:string;
-  createdOn:string;
+  deptId:string;
+   name:String;
+   college:colleges;
+    user:users;
+}
+export interface colleges{
+  cid:string;
+}
+export interface users{
+  uid:string;
 }

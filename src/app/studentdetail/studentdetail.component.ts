@@ -13,12 +13,19 @@ export class StudentdetailComponent implements OnInit {
   submitted = false;
   desider:boolean=true;
   model:userModel={
-    uid: '',
+    userId: '',
     email: '',
     name: '',
     password: '',
     
+    
   };
+  insertModel:studentModel={
+    name:' ',
+     email: '',
+     password: '',
+    role:{'roleId':'3'},
+  }
   
   constructor(private _userService:UserconnectService,private formBuilder: FormBuilder,private _httpClient:HttpClient) { }
   @Input() showView:any=' ';
@@ -52,11 +59,12 @@ export class StudentdetailComponent implements OnInit {
           return;
       }
       else{
+        console.log(this.insertModel);
       let url="http://localhost:8080/user/insertUser";
-      this._httpClient.post(url,this.model).subscribe(
+      this._httpClient.post(url,this.insertModel).subscribe(
         res => {
-          console.log(this.model);
-          localStorage.setItem("sessionUid",this.model.email);
+          console.log(this.insertModel);
+          // sessionStorage.setItem("sessionUid",this.insertModel.userId);
           alert('Succesfuly Register');
           this.getAlluser();
         },
@@ -65,7 +73,7 @@ export class StudentdetailComponent implements OnInit {
         }
       );
       }
-      alert('Selected   '+this.model.name)
+      alert('Selected   '+this.insertModel.email)
   }
   submitView(i:any,userItr:any){
     
@@ -75,8 +83,8 @@ export class StudentdetailComponent implements OnInit {
   deleteUser(userItr:any,userList:any,i:any){
     
     
-    alert('Confirm To Delete  '+userItr.uid);
-    this._userService.deleteById(userItr.uid).subscribe(
+    alert('Confirm To Delete  '+userItr.userId);
+    this._userService.deleteById(userItr.userId).subscribe(
       res => {
         alert('Succesfuly Deleted');
         this.userList.splice(i, 1);
@@ -113,8 +121,19 @@ export class StudentdetailComponent implements OnInit {
 
 }
 export interface userModel{
-  uid:string;
+  userId:string;
   email:string;
   name:string;
   password:string;
+  
 }
+export interface roles{
+  roleId:string;
+ }
+ export interface studentModel{
+  name:string;
+  email:string;
+  password:string;
+  role:roles;
+}
+ 

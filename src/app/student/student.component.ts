@@ -40,7 +40,7 @@ export class StudentComponent implements OnInit {
   }
   ngAfterContentInit(data:any) 
   {
-    let isLocalStorage=localStorage.getItem("sessionUid");
+    let isLocalStorage=sessionStorage.getItem("sessionUid");
     if(isLocalStorage!=null)
         this.isHidder=true;
     if(data!=null){
@@ -53,7 +53,7 @@ export class StudentComponent implements OnInit {
         console.log(this.taskListBean);
       }
     );
-    this._userService.getDetail(localStorage.getItem("sessionUid"),'').subscribe(
+    this._userService.getDetail(sessionStorage.getItem("sessionUid"),'').subscribe(
       (response) => {
         this.taskListByUser=response;
         this.tasklist= response.taskList;
@@ -101,7 +101,7 @@ export class StudentComponent implements OnInit {
      this.status = !this.status;       
  }
   getUser(){
-    let isLocalStorage=localStorage.getItem("sessionUid");
+    let isLocalStorage=sessionStorage.getItem("sessionUid");
       this._httpClient.get<any>('http://localhost:8080/user/getUserById/'+isLocalStorage).subscribe(
        (response) => {
          this.userListByID=response;   

@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
     else if(param=='college')
       this.showcase='college';
     else if(param=='logout'){
-      let logout=localStorage.removeItem("sessionUid")
+      let logout=sessionStorage.removeItem("sessionUid")
       if(logout==null){
          alert("Logout Successfully");
          location.reload();

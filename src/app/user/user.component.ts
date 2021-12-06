@@ -12,7 +12,7 @@ import { UserconnectService } from '../service/userconnect.service';
 export class UserComponent implements OnInit {
  
 model:userModel={
-  uid: '',
+  userId: '',
   email: '',
   name: '',
   password: '',
@@ -25,8 +25,8 @@ model:userModel={
   constructor(private userService:UserconnectService,private httpClient:HttpClient ) { }
   @Input() studData:string='';
 
-  getAlert(uid:any){
-    alert(uid.value);
+  getAlert(userId:any){
+    alert(userId.value);
   }
   userEmails = new FormGroup({
     primaryEmail: new FormControl('',[
@@ -51,16 +51,16 @@ model:userModel={
   
   }
  
-  getDetails(uid:any,upskw:any,form:NgForm){
-    this.userService.getDetail(uid.value,upskw.value).subscribe(
+  getDetails(userId:any,upskw:any,form:NgForm){
+    this.userService.getDetail(userId.value,upskw.value).subscribe(
       res => {
-        console.log(res.password);
-        if(res.uid==uid.value){
+        console.log(userId.value);
+        if(res.userId==userId.value){
           if(res.password==upskw.value){
            alert('Login Successfuly');
            form.reset();
-           localStorage.setItem("sessionUid",uid.value);
-           this.userConfirmation.emit(uid.value);
+           sessionStorage.setItem("sessionUid",userId.value);
+           this.userConfirmation.emit(userId.value);
           }
           else
             alert('Password Not Match/Not Found');
@@ -75,7 +75,7 @@ model:userModel={
    }
 }
 export interface userModel{
-  uid:string;
+  userId:string;
   email:string;
   name:string;
   password:string;

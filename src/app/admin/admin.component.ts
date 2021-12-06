@@ -14,15 +14,15 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
   }
   finishLogin:boolean=false;
-  getDetails(uid:any,upskw:any,form:NgForm){
-    this._userService.getDetail(uid.value,upskw.value).subscribe(
+  getDetails(userId:any,upskw:any,form:NgForm){
+    this._userService.getDetail(userId.value,upskw.value).subscribe(
       res => {
         console.log(res.password);
-        if(res.uid==uid.value){
+        if(res.userId==userId.value){
           if(res.password==upskw.value){
            alert('Login Successfuly');
            form.reset();
-           localStorage.setItem("sessionUid",res.uid);
+           sessionStorage.setItem("sessionUid",res.uiuserId);
            this.finishLogin=true;
           }
           else

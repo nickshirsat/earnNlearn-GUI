@@ -5,7 +5,7 @@
       <h1>Login</h1>
       <div class="content">
         <div class="input-field">
-          <input type="email" placeholder="Email" #uid name="uid" id="uid" autocomplete="nope">
+          <input type="text" placeholder="Email" #userId name="userId" id="userId" autocomplete="nope">
         </div>
         <div class="input-field">
           <input type="password" placeholder="Password" #upskw name="upskw" id="upskw" autocomplete="new-password">
@@ -13,7 +13,7 @@
         <a href="#" class="link">Forgot Your Password?</a>
       </div>
       <div class="action">
-        <button type="submit" class="btn btn-primary" (click)="getDetails(this.uid,this.upskw,form)">Sign in</button>
+        <button type="submit" class="btn btn-primary" (click)="getDetails(this.userId,this.upskw,form)">Sign in</button>
       </div>
     </form>
   </div>
