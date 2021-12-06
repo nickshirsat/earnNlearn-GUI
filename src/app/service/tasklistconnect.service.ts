@@ -26,4 +26,9 @@ export class TasklistconnectService {
     let url="http://localhost:8080/task/updateTask/";
     return this.httpClient.put<number>(url,userItr);
    }
+
+   queryviewtasklist(userId:any){
+      let url="http://localhost:8080/task/getTaskByUid/";
+      return this.httpClient.get<any>(url+userId);
+   }
 }

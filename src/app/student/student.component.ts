@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { UserconnectService } from '../service/userconnect.service';
 import { TasklistconnectService } from '../service/tasklistconnect.service';
 import { TasknestedconnectService } from '../service/tasknestedconnect.service';
+import { ReportconnectService } from '../service/reportconnect.service';
 
 @Component({
   selector: 'app-student',
@@ -24,14 +25,14 @@ export class StudentComponent implements OnInit {
     users:[{'uid':''}],
   }
   reportModel:reportObjModel={
-    id: '1',
-    transactionId: '21',
-    date: '1997-6-10',
-    status: 'Completed',
-    modifiedOn: '1997-6-10',
-    cratedOn: '1997-6-10',
+    id: '',
+    transactionId: '',
+    date: '',
+    status: '',
+    modifiedOn: '',
+    cratedOn: '',
     };
-  constructor(private _userService:UserconnectService,private _taskList:TasklistconnectService,private _httpClient:HttpClient,private _tasknestedlisted:TasknestedconnectService) { }
+  constructor(private _userService:UserconnectService,private _reportService:ReportconnectService,private _taskList:TasklistconnectService,private _httpClient:HttpClient,private _tasknestedlisted:TasknestedconnectService) { }
   isHidder:boolean=false;
   showView:string='home';
   userListByID:any; 
@@ -102,6 +103,46 @@ export class StudentComponent implements OnInit {
         this._httpClient.put<any>('http://localhost:8080/task/assignTask', this.taskQuery)
         .subscribe(res => alert('sucessfully added'));
    }
+   listUserCurrentTask:any;
+  queryforusertask(userId:any){
+    this._taskList.queryviewtasklist(userId).subscribe(
+      (response) => {
+        this.listUserCurrentTask=response;
+        alert('Succesfuly Register');
+    },
+    err => {
+      alert("Confirm");
+    }
+    );
+
+  }
+  reportList:any;
+  subtasklist:any;
+  showreport(){
+    const user_id=sessionStorage.getItem("sessionUid");
+    this._reportService.genratereport(user_id).subscribe(
+      (response)=>{
+          this.reportList=response;
+          console.log('here');
+          console.log(this.reportList);
+          this._taskList.queryviewtasklist(user_id).subscribe(
+            (res)=>{
+              this.subtasklist=res;
+              console.log(this.subtasklist);
+            },
+            err=>{
+              alert('task not allocated');
+            }
+            
+          )
+
+      },
+      errr=>{
+          alert('Report Not Found/Not Report Available');
+      }
+    );
+    
+  }
    onboard(param:any){
       switch(param){
         case 'view':this.showView='view';break;
@@ -109,7 +150,7 @@ export class StudentComponent implements OnInit {
         case 'add'  :this.showView='add';break;
         case 'delete' :this.showView='delete';break;
         case 'viewTask' :this.showView='viewTask';break;
-        case 'report' :this.showView='report';break;
+        case 'report' :this.showView='report';this.showreport();break;
 
       }
    }
