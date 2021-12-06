@@ -151,6 +151,7 @@ export class StudentComponent implements OnInit {
         case 'delete' :this.showView='delete';break;
         case 'viewTask' :this.showView='viewTask';break;
         case 'report' :this.showView='report';this.showreport();break;
+        case 'logout' :this.showView='viewTask';sessionStorage.removeItem("sessionUid");location.reload();break;
 
       }
    }
