@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TasklistconnectService } from '../service/tasklistconnect.service';
 import { UserconnectService } from '../service/userconnect.service';
 
 @Component({
@@ -27,7 +28,7 @@ export class StudentdetailComponent implements OnInit {
     role:{'roleId':'3'},
   }
   
-  constructor(private _userService:UserconnectService,private formBuilder: FormBuilder,private _httpClient:HttpClient) { }
+  constructor(private _userService:UserconnectService,private _tasklistbyuser:TasklistconnectService,private formBuilder: FormBuilder,private _httpClient:HttpClient) { }
   @Input() showView:any=' ';
   changeVar:any;
   ngOnInit(): void {
