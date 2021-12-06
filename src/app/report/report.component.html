@@ -3,17 +3,16 @@
         <thead>
             <tr>
                 <th class="th-sm">ID</th>
-                <th class="th-sm">Name</th>
                 <th class="th-sm">Email</th>
-                <th class="th-sm">Designation</th>
-                <th class="th-sm">Start Date</th>
-                <th class="th-sm">Net Hours</th>
+                <th class="th-sm">Name</th>
+                
+                <th class="th-sm">Operation</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let userItr of userList,let i=index">
                 <td>
-                    <input [(ngModel)]="userItr.uid" class="form-control" type="number" name="{{userItr.uid}}" [disabled]='desider'/>
+                    <input [(ngModel)]="userItr.userId" class="form-control" type="number" name="{{userItr.userId}}" [disabled]='desider'/>
                 </td>
                 <td>
                     <input [(ngModel)]="userItr.email" class="form-control" type="text" name="{{userItr.email}}" [disabled]='desider'/>
@@ -21,12 +20,7 @@
                 <td>
                     <input [(ngModel)]="userItr.name" class="form-control" type="text" name="{{userItr.name}}" [disabled]='desider'/>
                 </td>   
-                <td>
-                    <input [(ngModel)]="userItr.createdOn" class="form-control" type="text" name="{{userItr.createdOn}}" [disabled]='desider'/>
-                </td>    
-                <td>
-                    <input [(ngModel)]="userItr.modifiedOn" class="form-control" type="text" name="{{userItr.modifiedOn}}" [disabled]='desider'/>
-                </td>    
+                 
                 <td class="row">
                     <button name="editbtn" class="btn col-md-4" (click)="editDetails()"><i class="fa fa-edit"></i></button>
                     <button name="editbtn" class="btn col-md-4" (click)="submitResult(i,userItr)"><i class="fa fa-check-square"></i></button>

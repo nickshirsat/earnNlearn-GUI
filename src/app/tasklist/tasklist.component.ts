@@ -8,7 +8,7 @@ import { TasklistconnectService } from '../service/tasklistconnect.service';
 })
 export class TasklistComponent implements OnInit {
   model:taskModel={
-    tid: '',
+    taskId: '',
     startDate:' ',
     name: '',
     comment: '',
@@ -63,7 +63,7 @@ editDetails(){
  }
  deletetask(taskItr:any,taskListBean:any,i:any){
   alert('Confirm To Delete  '+taskItr.tid);
-  this._taskListService.deleteById(taskItr.tid).subscribe(
+  this._taskListService.deleteById(taskItr.taskId).subscribe(
     res => {
       alert('Succesfuly Deleted !..');
       this.taskListBean.splice(i, 1);
@@ -75,7 +75,7 @@ editDetails(){
 }
  }
  export interface taskModel{
-  tid:string;
+  taskId:string;
   startDate:string;
   name:string;
   comment:string;

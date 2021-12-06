@@ -64,7 +64,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let deptItr of departmentList,let i=index">
-            <td><input [(ngModel)]="deptItr.deptId" class="form-control" type="number" name="{{deptItr.deptId}}" [disabled]='desider'/></td>
+            <td><input [(ngModel)]="deptItr.deptId" class="form-control" type="text" name="{{deptItr.deptId}}" [disabled]='desider'/></td>
             <td><input [(ngModel)]="deptItr.name" class="form-control" type="text" name="{{deptItr.name}}" [disabled]='desider'/></td>               
    
             <td class='row'>

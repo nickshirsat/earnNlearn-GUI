@@ -13,7 +13,10 @@ export class TasklistconnectService {
     return this.httpClient.get<any>(url);
    }
 
-    
+    queryById(taskModel:any):Observable<any>{
+    let url="http://localhost:8080/task/assignTask";
+    return this.httpClient.get<any>(url,taskModel);
+    }
 
    deleteById(uid:number):Observable<any>{
     let url="http://localhost:8080/task/deleteTaskById/";

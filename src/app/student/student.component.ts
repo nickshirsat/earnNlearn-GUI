@@ -12,10 +12,16 @@ import { TasknestedconnectService } from '../service/tasknestedconnect.service';
 })
 export class StudentComponent implements OnInit {
   userModal:any={
-    uid: '',
+    userId: '',
     name: '',
     email: '',
     createdOn: '',
+  }
+  taskQuery:taskQuery={
+    
+    tid:'',
+    status:-1,
+    users:[{'uid':''}],
   }
   reportModel:reportObjModel={
     id: '1',
@@ -25,12 +31,13 @@ export class StudentComponent implements OnInit {
     modifiedOn: '1997-6-10',
     cratedOn: '1997-6-10',
     };
-  constructor(private _userService:UserconnectService,private _httpClient:HttpClient,private _tasknestedlisted:TasknestedconnectService) { }
+  constructor(private _userService:UserconnectService,private _taskList:TasklistconnectService,private _httpClient:HttpClient,private _tasknestedlisted:TasknestedconnectService) { }
   isHidder:boolean=false;
   showView:string='home';
   userListByID:any; 
   param:any;
   taskListBean:any;
+  static index:number=0;
   taskListByUser:any;
   tasklist:any;
   allUserList:any;
@@ -40,7 +47,7 @@ export class StudentComponent implements OnInit {
   }
   ngAfterContentInit(data:any) 
   {
-    let isLocalStorage=sessionStorage.getItem("sessionUid");
+     let isLocalStorage=sessionStorage.getItem("sessionUid");
     if(isLocalStorage!=null)
         this.isHidder=true;
     if(data!=null){
@@ -81,8 +88,20 @@ export class StudentComponent implements OnInit {
       }
     );
   }
+  startTask(){
+  }
 
-   getTaskDetail(){}
+    getTaskDetail(taskItem:any){
+      let session=sessionStorage.getItem("sessionUid");
+     console.log(this.taskQuery);
+       console.log(taskItem.taskId);
+       this.taskQuery.tid=taskItem.taskId;
+       this.taskQuery.status=-1;
+       
+       this.taskQuery.users[0].uid=this.taskListByUser.userId;
+        this._httpClient.put<any>('http://localhost:8080/task/assignTask', this.taskQuery)
+        .subscribe(res => alert('sucessfully added'));
+   }
    onboard(param:any){
       switch(param){
         case 'view':this.showView='view';break;
@@ -105,7 +124,7 @@ export class StudentComponent implements OnInit {
       this._httpClient.get<any>('http://localhost:8080/user/getUserById/'+isLocalStorage).subscribe(
        (response) => {
          this.userListByID=response;   
-         this.userModal.uid=this.userListByID.uid;
+         this.userModal.userId=this.userListByID.userId;
          this.userModal.name=this.userListByID.name;
          this.userModal.email=this.userListByID.email;
          this.userModal.createdOn=this.userListByID.createdOn;  
@@ -116,7 +135,7 @@ export class StudentComponent implements OnInit {
    
  }
 export  interface userList{
-  uid:string;
+  userId:string;
   name:string;
   email:string;
   createdOn:String;
@@ -128,4 +147,12 @@ export interface reportObjModel{
   status:string;
   modifiedOn:string;
   cratedOn:string;
+}
+export interface taskQuery{
+  tid:string;
+  status:number;
+  users:usersId[];
+}
+export interface usersId{
+  uid:string;
 }

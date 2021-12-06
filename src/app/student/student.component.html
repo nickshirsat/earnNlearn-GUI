@@ -25,7 +25,7 @@
                             <h3> {{userModal.name}}</h3>
                           </div>
                           <div class="card-body">
-                            <p class="mb-0"><strong class="pr-1">Student ID:</strong>{{userModal.uid}}</p>
+                            <p class="mb-0"><strong class="pr-1">Student ID:</strong>{{userModal.userId}}</p>
                             <!-- <p class="mb-0"><strong class="pr-1">Class:</strong>{{userModal.uid}}</p> -->
                             <p class="mb-0"><strong class="pr-1">Section:</strong>{{userModal.email}}</p>
                           </div>
@@ -84,7 +84,7 @@
               <p class="card-text" style="float: left;">{{taskItem.email}}</p>
               <p class="card-text">created Date : {{taskItem.createdOn | date:'MM/dd/yyyy h:mm a'}}</p>
               <p class="card-text">Modified Date : {{taskItem.modifiedOn | date:'MM/dd/yyyy h:mm a'}}</p>
-              <button class="btn btn-info" (click)="getTaskDetail()" name="submitTask">Add Task</button>
+              <button class="btn btn-info" (click)="getTaskDetail(taskItem)" name="submitTask">Add Task</button>
             </div>
           </div>
         </div>
@@ -146,7 +146,7 @@
             <p class="card-text" style="float: left;">{{taskItem.email}}</p>
             <p class="card-text">created Date : {{taskItem.createdOn}}</p>
             <p class="card-text">Modified Date : {{taskItem.modifiedOn}}</p>
-            <button class="btn btn-info" (click)="getTaskDetail()" name="submitTask">Start Task</button>
+            <button class="btn btn-info"   name="submitTask">Start Task</button>
           </div>
         </div>
         <h3 style="text-align: center;color: blueviolet;">Previous Task</h3>
@@ -165,7 +165,7 @@
             <p class="card-text" style="float: left;">{{taskItem.email}}</p>
             <p class="card-text">created Date : {{taskItem.createdOn}}</p>
             <p class="card-text">Modified Date : {{taskItem.modifiedOn}}</p>
-            <button class="btn btn-info" (click)="getTaskDetail()" name="submitTask">Start Task</button>
+            <button class="btn btn-info" (click)="startTask()" name="submitTask">Start Task</button>
           </div>
         </div>
       </ng-container>
@@ -202,4 +202,6 @@
     </div>
   </div>
 </ng-container>
+<pre>{{taskQuery | json}}</pre>
+
 <app-user [hidden]='isHidder' (userConfirmation)="ngAfterContentInit($event)"></app-user>

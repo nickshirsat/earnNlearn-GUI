@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DepartmentconnectService } from '../service/departmentconnect.service';
+ import { DepartmentconnectService } from '../service/departmentconnect.service';
 
 @Component({
   selector: 'app-department',
@@ -26,6 +26,7 @@ export class DepartmentComponent implements OnInit {
     this._department.getDetail().subscribe(
       (response) => {
          this.departmentList=response;
+         console.log(response);
       }
     );
   }

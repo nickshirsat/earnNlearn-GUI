@@ -45,7 +45,7 @@
   </thead>
   <tbody>
       <tr *ngFor="let taskItr of taskListBean,let i=index">
-          <td><input [(ngModel)]="taskItr.tid" class="form-control" type="number" name="{{taskItr.uid}}" [disabled]='desider'/></td>
+          <td><input [(ngModel)]="taskItr.taskId" class="form-control" type="number" name="{{taskItr.taskId}}" [disabled]='desider'/></td>
           <td><input [(ngModel)]="taskItr.name" class="form-control" type="text" name="{{taskItr.name}}" [disabled]='desider'/></td>               
           <td><input [(ngModel)]="taskItr.description" class="form-control" type="text" name="{{taskItr.description}}" [disabled]='desider'/></td>   
           <td><input [(ngModel)]="taskItr.comment" class="form-control" type="text" name="{{taskItr.comment}}" [disabled]='desider'/></td>    
