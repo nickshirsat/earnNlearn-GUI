@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { from } from 'rxjs';
 import { ReportconnectService } from '../service/reportconnect.service';
 import { TasklistconnectService } from '../service/tasklistconnect.service';
 import { TasknestedconnectService } from '../service/tasknestedconnect.service';
@@ -22,12 +23,27 @@ export class SupervisorComponent implements OnInit {
   userListByID:any;
   showView:string='home';
   param:any;
+  freshTaskList:any;
+
   userModal:any={
     userId: '',
     name: '',
     email: '',
     createdOn: '',
-  }
+  };
+  model:taskModel={
+    taskId: '',
+    startDate:' ',
+    name: '',
+    comment: '',
+    endDate: '',
+    description: '',
+    quantity: '',
+    status: '',
+    modifiedOn: ' ',
+    createdOn: '',
+    
+  };
   ngOnInit(): void {
   }
   ngAfterContentInit(data:any) 
@@ -38,6 +54,15 @@ export class SupervisorComponent implements OnInit {
     if(data!=null){
       this.isHidder=true;
     }
+
+    this._taskList.getDetail().subscribe(
+      (response) => {
+        this.freshTaskList=response;
+        console.log(this.freshTaskList);
+      }
+    );
+
+
     this.getUser();
     this._tasknestedlisted.getDetail().subscribe(
       (response) => {
@@ -45,10 +70,12 @@ export class SupervisorComponent implements OnInit {
         console.log(this.taskListBean);
       }
     );
+    
     this._userService.getDetail(sessionStorage.getItem("sessionUid"),'').subscribe(
       (response) => {
         this.taskListByUser=response;
         this.tasklist= response.taskList;
+        console.log('from');
         console.log(this.tasklist);
       }
     );
@@ -84,4 +111,17 @@ export class SupervisorComponent implements OnInit {
         } 
      );
    }
+}
+
+export interface taskModel{
+  taskId:string;
+  startDate:string;
+  name:string;
+  comment:string;
+  endDate:string;
+  description:string;
+  quantity:string;
+  status:string;
+  modifiedOn:string;
+  createdOn:string;
 }
