@@ -18,7 +18,16 @@ model:userModel={
   password: '',
   
 };
+roleModel:roleModel={
+  userId: '',
+  email: '',
+  name: '',
+  password: '',
+  role:{roleId:''},
+};
   @Output() userConfirmation:EventEmitter<string>=new EventEmitter<string>();
+  @Output() userSupervisorConfirmation:EventEmitter<string>=new EventEmitter<string>();
+
   hideClass:boolean=false;
   ngOnInit(): void {
   }                                                            
@@ -59,8 +68,25 @@ model:userModel={
           if(res.password==upskw.value){
            alert('Login Successfuly');
            form.reset();
-           sessionStorage.setItem("sessionUid",userId.value);
-           this.userConfirmation.emit(userId.value);
+          //  sessionStorage.setItem("sessionUid",userId.value);
+          //   this.userConfirmation.emit(userId.value);
+
+           if(res.role.roleId=='2'){
+              sessionStorage.setItem("sessionUid",userId.value);
+              this.userSupervisorConfirmation.emit(userId.value);
+              alert('Supervisor Login Only');
+           }
+           else if(res.role.roleId=='3'){
+            sessionStorage.setItem("sessionUid",userId.value);
+            this.userConfirmation.emit(userId.value);
+            alert('Student Login Only');
+           }
+           else if(res.role.roleId=='1'){
+            sessionStorage.setItem("sessionUid",userId.value);
+            this.userConfirmation.emit(userId.value);
+            alert('Admin Login Only');
+           }
+
           }
           else
             alert('Password Not Match/Not Found');
@@ -79,4 +105,11 @@ export interface userModel{
   email:string;
   name:string;
   password:string;
+}
+export interface roleModel{
+  userId:string;
+  email:string;
+  name:string;
+  password:string;
+  role:{roleId:string};
 }

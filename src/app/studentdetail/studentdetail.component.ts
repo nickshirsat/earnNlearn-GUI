@@ -101,7 +101,7 @@ export class StudentdetailComponent implements OnInit {
    getAlluser(){
     this._userService.getAllDetail().subscribe(
       (response) => {
-        this.userList=response.filter;
+        this.userList=response;
         console.log(response);
       }
     );

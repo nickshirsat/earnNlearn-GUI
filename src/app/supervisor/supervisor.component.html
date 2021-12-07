@@ -1,3 +1,94 @@
 <h1 style="color: #17A2C1;font-weight:bold;padding:3%;text-align: center;">Our Trusted Supervisor </h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<ng-container *ngIf='isHidder'>
+  <div class="login-form">
+    <div class="topnav" style="margin: 3%;background-color: aliceblue;">
+      <button class="active" class="btn" (click)="onboard(param='home')">Home</button>
+      <button class="btn" (click)="onboard(param='add')">Approval Task</button>
+      <button class="btn" (click)="onboard(param='viewTask')">View Task</button>
+      <button class="btn" (click)="onboard(param='report')">Report</button>
+      <button class="btn btn-success" style="float: right;" (click)="onboard(param='logout')"><i class="fa fa-sign-out-alt red-color"></i></button>
+    </div>
+    <div style="margin: 3%;">
+        <ng-container *ngIf="showView=='home'?true:false;">
+            <section>
+              <div class="rt-container">
+                <div class="col-rt-12">
+                  <div class="Scriptcontent">
+                    <div class="student-profile py-4">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="card shadow-sm">
+                              <div class="card-header bg-transparent text-center">
+                                <img class="profile_img" src="../../assets/images/user.jpg" style="height: 250px;"
+                                  alt="student dp">
+                                <h3> {{userModal.name}}</h3>
+                              </div>
+                              <div class="card-body">
+                                <p class="mb-0"><strong class="pr-1">Student ID:</strong>{{userModal.userId}}</p>
+                                <!-- <p class="mb-0"><strong class="pr-1">Class:</strong>{{userModal.uid}}</p> -->
+                                <p class="mb-0"><strong class="pr-1">Section:</strong>{{userModal.email}}</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 ">
+                            <div class="card shadow-sm">
+                              <div class="card-header bg-transparent border-0">
+                                <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
+                              </div>
+                              <div class="card-body pt-0">
+                                <table class="table table-bordered">
+                                  <tr>
+                                    <th width="30%">Roll ID</th>
+                                    <td width="2%">:</td>
+                                    <td>{{userModal.userId}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th width="30%">Designation</th>
+                                    <td width="2%">:</td>
+                                    <td>Supervisor</td>
+                                  </tr>
+    
+                                  <tr>
+                                    <th width="30%">Email</th>
+                                    <td width="2%">:</td>
+                                    <td>{{userModal.email}}</td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+    
+                  </div>
+                </div>
+              </div>
+            </section>
+    
+          </ng-container>
+      <ng-container *ngIf="showView=='add'?true:false;">
+        <h1>Add</h1>
 
-<app-user [studData]="studData"></app-user>
+         
+      </ng-container>
+      <ng-container *ngIf="showView=='delete'?true:false;">
+         
+      </ng-container>
+      <ng-container *ngIf="showView=='update'?true:false;">
+        <h2>Update</h2>
+      </ng-container>
+      <ng-container class="row" *ngIf="showView=='viewTask'?true:false;">
+         
+      </ng-container>
+      <ng-container *ngIf="showView=='report'?true:false;">
+         
+       </ng-container>
+    </div>
+  </div>
+</ng-container>
+ 
+<app-user [hidden]='isHidder' (userSupervisorConfirmation)="ngAfterContentInit($event)"></app-user>
+ 

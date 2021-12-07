@@ -5,7 +5,6 @@
       <button class="active" class="btn" (click)="onboard(param='home')">Home</button>
       <button class="btn" (click)="onboard(param='add')">Add Task</button>
       <button class="btn" (click)="onboard(param='viewTask')">View Task</button>
-      <button class="btn" (click)="onboard(param='delete')">Delete Task</button>
       <button class="btn" (click)="onboard(param='report')">Report</button>
       <button class="btn btn-success" style="float: right;" (click)="onboard(param='logout')"><i class="fa fa-sign-out-alt red-color"></i></button>
     </div>
@@ -45,9 +44,9 @@
                                 <td>{{userModal.userId}}</td>
                               </tr>
                               <tr>
-                                <th width="30%">Academic Year </th>
+                                <th width="30%">Designation</th>
                                 <td width="2%">:</td>
-                                <td>{{userModal.createdOn | date:'MM/dd/yyyy h:mm a'}}</td>
+                                <td>Student</td>
                               </tr>
 
                               <tr>
