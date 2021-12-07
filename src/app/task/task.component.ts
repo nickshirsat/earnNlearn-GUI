@@ -14,10 +14,14 @@ export class TaskComponent implements OnInit {
     id:'',
     comment:'',
     description:'',
-    end_date:'',
+    endDate:'',
     name:'',
     quantity:'',
-    start_date:'',
+    startDate:'',
+    start_time:'',
+    end_time:'',
+    final_starttimestamp:'',
+    final_endtimestamp:'',
   }
   constructor(private _taskconnect:TaskconnectService) { }
    
@@ -26,7 +30,12 @@ export class TaskComponent implements OnInit {
      
   }
   putDetail(taskModel:any){
-    this._taskconnect.createTask(this.taskModel).subscribe(     
+    this.taskModel.startDate=new Date().toISOString();
+    this.taskModel.endDate=new Date( ).toISOString();
+    // var timedate={{startDate.toString()+final_starttimestamo}};
+    //  this.taskModel.endDate=
+
+     this._taskconnect.createTask(this.taskModel).subscribe(     
       res => {
          alert('Successfully Generated');
          location.reload();
@@ -42,8 +51,12 @@ export interface TaskModel{
   id:string;
   comment:string;
   description:string;
-  end_date:string;
+  endDate:string;
   name:string;
   quantity:string;
-  start_date:string;
+  startDate:string;
+  start_time:string;
+  end_time:string;
+  final_starttimestamp:'',
+  final_endtimestamp:'',
 }

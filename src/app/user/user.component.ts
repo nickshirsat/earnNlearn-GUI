@@ -53,7 +53,7 @@ roleModel:roleModel={
         alert('Succesfuly Login');
       },
       err => {
-        alert("An error has occurred while sending feedback");
+        alert("Sucessfully Registraion");
       }
     );
     alert('Selected   '+this.model.name)
