@@ -23,6 +23,7 @@ export class SupervisorComponent implements OnInit {
   userListByID:any;
   showView:string='home';
   param:any;
+  registrationHidder:boolean=false;
   freshTaskList:any;
 
   userModal:any={
@@ -44,6 +45,12 @@ export class SupervisorComponent implements OnInit {
     createdOn: '',
     
   };
+  taskQuery:taskQuery={
+    
+    tid:'',
+    status:2,
+    users:[{'uid':''}],
+  }
   ngOnInit(): void {
   }
   ngAfterContentInit(data:any) 
@@ -61,7 +68,7 @@ export class SupervisorComponent implements OnInit {
         console.log(this.freshTaskList);
       }
     );
-
+      
 
     this.getUser();
     this._tasknestedlisted.getDetail().subscribe(
@@ -111,6 +118,21 @@ export class SupervisorComponent implements OnInit {
         } 
      );
    }
+   freshTaskstatusListItr:any;
+   indexStatus:any;
+   putstatuschanger(freshTaskstatusListItr:any,indexStatus:any){
+    this.indexStatus;
+      
+     freshTaskstatusListItr.status=indexStatus;
+       this._taskList.taskstatuschanger(freshTaskstatusListItr).subscribe(
+        (responce)=>{
+          alert('Request Accepted!..');
+        },
+        err=>{
+          alert('Request Problem!  :(');
+        }
+      );
+  }
 }
 
 export interface taskModel{
@@ -125,3 +147,13 @@ export interface taskModel{
   modifiedOn:string;
   createdOn:string;
 }
+
+export interface taskQuery{
+  tid:string;
+  status:number;
+  users:usersId[];
+}
+export interface usersId{
+  uid:string;
+}
+ 
