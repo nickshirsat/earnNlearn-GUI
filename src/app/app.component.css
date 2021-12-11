@@ -1,6 +1,7 @@
 body{
   font-family: sans-serif;
   margin: 0;
+  width: 100%;
   padding: 0;
 }
 
@@ -41,10 +42,8 @@ img{
 nav ul li:hover{
   background-color: coral;
   color: #000;
-  font-weight: bold;
-  font-size: 1.2rem;
   height: 80px;
-}
+} 
 
 .section{
   width: 80%;

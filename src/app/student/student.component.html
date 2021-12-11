@@ -82,9 +82,11 @@
             </div>
             <div [hidden]="status" *ngIf="i==activeIndex">
               <p class="card-text" style="float: left;">{{taskItem.email}}</p>
-              <p class="card-text">created Date : {{taskItem.createdOn | date:'MM/dd/yyyy h:mm a'}}</p>
-              <p class="card-text">Modified Date : {{taskItem.modifiedOn | date:'MM/dd/yyyy h:mm a'}}</p>
-              <button class="btn btn-info" (click)="getTaskDetail(taskItem)" name="submitTask">Add Task</button>
+              <p class="card-text">Start Date : {{taskItem.startDate | date:'MM/dd/yyyy h:mm a'}}</p>
+              <p class="card-text">End Date : {{taskItem.endDate | date:'MM/dd/yyyy h:mm a'}}</p>
+              <p class="card-text">Description : {{taskItem.description}}</p>
+ 
+              <button class="btn btn-info"  (click)="getTaskDetail(taskItem)" name="submitTask">Add Task</button>
             </div>
           </div>
         </div>
@@ -130,11 +132,13 @@
         <h2>Update</h2>
       </ng-container>
       <ng-container class="row" *ngIf="showView=='viewTask'?true:false;">
-        <h3 style="text-align: center;color: blueviolet;">Today</h3>
+        <h3 style="text-align: center;color: blueviolet;">All Today</h3>
         <div class="card-body login-form col" *ngFor="let taskItem of  listUserCurrentTask,let i=index">
           <div class="row">
           <h3 class="card-title col" style="padding: 2px;">{{taskItem.name}}</h3> 
-          <h5 class="card-text col" style="padding: 2px;float: right;">{{taskItem.createdOn | date:'h:mm a'}}</h5> 
+          <h5 class="card-text col" style="padding: 2px;float: right;">{{taskItem.startDate | date:'h:mm a'}}</h5> 
+          <div class="small text-success col" [hidden]="this.taskItem.status==2?false:true"><i class="fa fa-check-circle"></i>  Your Task Completed!..</div>
+
           </div>
           <hr style="width: 100%;color: #000;">
           <div class="row">
@@ -143,34 +147,21 @@
             <button class="btn btn-info button-4 col" role="button" (click)="clickEvent(i)" style="float: right;">Details</button>
           </div>
           <div [hidden]="status" *ngIf="i==activeIndex">
-            <p class="card-text" style="float: left;">{{taskItem.email}}</p>
+            <p class="card-text" style="float: left;">{{taskItem.users.email}}</p>
             <p class="card-text">created Date : {{taskItem.createdOn}}</p>
             <p class="card-text">Modified Date : {{taskItem.modifiedOn}}</p>
-            <button class="btn btn-info"   name="submitTask">Start Task</button>
+
+            <button type="button" [hidden]="this.taskItem.status==2?true:false" [disabled]="this.taskItem.status==(1 || 3 || 2)?true:false"  class="btn btn-outline-info btn-sm" (click)="putstatusdata(taskItem,1)">Start Task</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" [hidden]="this.taskItem.status==2?true:false" [disabled]="this.taskItem.status==3?true:false" class="btn btn-outline-success btn-sm"  (click)="putstatusdata(taskItem,3)">End Task</button>
+            <!-- <button type="button" class="btn btn-outline-danger btn-sm" (click)="putstatusdata(taskItem,1)" >Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp; -->
+            <div class="small text-success" [hidden]="this.taskItem.status==2?false:true"><i class="fa fa-check-circle"></i>  Your Task Completed!..</div>
+
           </div>
         </div>
-        <h3 style="text-align: center;color: blueviolet;">Previous Task</h3>
-        <div class="card-body login-form  col" *ngFor="let taskItem of  taskListBean,let i=index">
-          <div class="row">
-          <h3 class="card-title col" style="padding: 2px;">{{taskItem.name}}</h3> 
-          <h5 class="card-text col" style="padding: 2px;float: right;">{{taskItem.createdOn | date:'h:mm a'}}</h5> 
-          </div>
-          <hr style="width: 100%;color: rgb(150, 140, 140);">
-          <div class="row">
-            <p class="card-text col"  >Comment : {{taskItem.comment}}</p>&nbsp;&nbsp;&nbsp;
-            <p class="card-text col">Quantity : {{taskItem.quantity}}</p>&nbsp;&nbsp;&nbsp;
-            <button class="btn btn-info button-4 col" role="button" (click)="clickEvent(i)" style="float: right;">Details</button>
-          </div>
-          <div [hidden]="status" *ngIf="i==activeIndex">
-            <p class="card-text" style="float: left;">{{taskItem.email}}</p>
-            <p class="card-text">created Date : {{taskItem.createdOn}}</p>
-            <p class="card-text">Modified Date : {{taskItem.modifiedOn}}</p>
-            <button class="btn btn-info" (click)="startTask()" name="submitTask">Start Task</button>
-          </div>
-        </div>
+         
       </ng-container>
       <ng-container *ngIf="showView=='report'?true:false;">
-        <form method="post" #form="ngForm">
+        <!-- <form method="post" #form="ngForm">
           <h1>Report Details</h1>
          <div class="container">
             <div class="input-field">
@@ -202,14 +193,13 @@
            </div> 
            <h2>Duration :- {{reportList.duration}}</h2>
           </div>
-         <div class="action">
-           <button  class="btn btn-info"   >Save</button>
-           <!-- <button type="submit" (click)="putDetail(this.taskModel)">Submit</button> -->
-         </div>
+         
        </form>
+         -->
+         <app-payment></app-payment>
       </ng-container>
     </div>
   </div>
 </ng-container>
  
-<app-user [hidden]='isHidder' (userConfirmation)="ngAfterContentInit($event)"></app-user>
+<app-user [hidden]='isHidder' [givePermissionStudent]='givePermission' (userStudentConfirmation)="ngAfterContentInit($event)"></app-user>

@@ -23,6 +23,7 @@ export class AdminComponent implements OnInit {
            alert('Login Successfuly');
            form.reset();
            sessionStorage.setItem("sessionUid",res.uiuserId);
+           
            this.finishLogin=true;
           }
           else

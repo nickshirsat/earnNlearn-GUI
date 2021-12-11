@@ -6,11 +6,11 @@ import { TasknestedconnectService } from '../service/tasknestedconnect.service';
 import { UserconnectService } from '../service/userconnect.service';
 
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  selector: 'app-reportadmin',
+  templateUrl: './reportadmin.component.html',
+  styleUrls: ['./reportadmin.component.css']
 })
-export class PaymentComponent implements OnInit {
+export class ReportadminComponent implements OnInit {
 
   constructor(private _userService:UserconnectService,private _reportService:ReportconnectService,private _taskList:TasklistconnectService,private _httpClient:HttpClient,private _tasknestedlisted:TasknestedconnectService) { }
 
@@ -19,19 +19,19 @@ export class PaymentComponent implements OnInit {
   reportList:any;
   subtasklist:any;
   userInfo:any;
-   ngAfterContentInit(){
+  @Input() userId:any=1;
+  ngAfterViewChecked(){
      this.reportmethod();
   }
   reportmethod(){
     
-       const user_id=sessionStorage.getItem("sessionUid");
-    
-    this._reportService.genratereport(user_id).subscribe(
+      
+    this._reportService.genratereport(this.userId).subscribe(
       (response)=>{
           this.reportList=response;
           console.log('here');
           console.log(this.reportList);
-          this._taskList.queryviewtasklist(user_id).subscribe(
+          this._taskList.queryviewtasklist(this.userId).subscribe(
             (res)=>{
               this.subtasklist=res;
               console.log(this.subtasklist);
@@ -41,7 +41,7 @@ export class PaymentComponent implements OnInit {
             }
             
           );
-          this._userService.getDetail(user_id,'').subscribe(
+          this._userService.getDetail(this.userId,'').subscribe(
             (response)=>{
               this.userInfo=response;
               console.log(this.userInfo);

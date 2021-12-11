@@ -30,8 +30,13 @@ export class TaskComponent implements OnInit {
      
   }
   putDetail(taskModel:any){
-    this.taskModel.startDate=new Date().toISOString();
-    this.taskModel.endDate=new Date( ).toISOString();
+     this.taskModel.startDate=this.taskModel.startDate+' '+this.taskModel.final_starttimestamp;
+     this.taskModel.startDate=new  Date(this.taskModel.startDate).toISOString();
+     console.log(this.taskModel.startDate);
+    // this.taskModel.startDate=new Date().toISOString();
+    this.taskModel.endDate=this.taskModel.endDate+' '+this.taskModel.final_endtimestamp;
+    this.taskModel.endDate=new  Date(this.taskModel.endDate).toISOString();
+     console.log(this.taskModel.endDate); 
     // var timedate={{startDate.toString()+final_starttimestamo}};
     //  this.taskModel.endDate=
 

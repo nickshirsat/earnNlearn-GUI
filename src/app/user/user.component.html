@@ -5,7 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <div class="login-form"  [hidden]="studData?true:false" style="padding-top:5%;padding-bottom:5%;padding: 5%;" >
+    <div class="login-form"  [hidden]="studData?true:false" *ngIf="hideRegistration" style="padding-top:5%;padding-bottom:5%;padding: 5%;" >
       <h2 class="text-left">User Registeration</h2><br>
         <div class="row">
           <div class="offset-3"></div>
@@ -15,8 +15,9 @@
                 <label for="email">Email Address</label>
                 <input type="text"
                        id="email"
-                       class="form-control"
+                       class="form-control input-field"
                        name="email"
+                       style="width: 150%;"
                        placeholder="Email Address"
                        [(ngModel)]="model.email"
                        #name="ngModel"
@@ -33,6 +34,7 @@
                        id="name"
                        class="form-control"
                        name="name"
+                       style="width: 150%;"
                        placeholder="Your Name"
                        [(ngModel)]="model.name"
                        #name="ngModel"
@@ -47,6 +49,8 @@
                        id="password"
                        class="form-control"
                        name="password"
+                       style="width: 150%;"
+
                        placeholder="Enter Password"
                        [(ngModel)]="model.password"
                        #foodItemPrice="ngModel"
@@ -82,11 +86,9 @@
       <div class="input-field">
         <input type="password" placeholder="Password" #upskw name="upskw" id="upskw" autocomplete="new-password">
       </div>
-      <a href="#" class="link">Forgot Your Password?</a>
-    </div>
+     </div>
     <div class="action">
-      <button type="submit" (click)="getAlert(userId)">Register</button>
-      <button type="submit" (click)="getDetails(this.userId,this.upskw,form)">Sign in</button>
+       <button class="btn btn-info" style="margin: 5%;" type="submit" (click)="getDetails(this.userId,this.upskw,form)">Sign in</button>
     </div>
   </form>
 </div>

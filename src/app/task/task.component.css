@@ -8,6 +8,7 @@
   body {
     background: #e35869;
     font-family: "Rubik", sans-serif;
+    text-align: left;
   }
   
   .login-form {
@@ -32,12 +33,9 @@
   }
   .login-form .input-field input {
     font-size: 16px;
-    display: block;
-    font-family: "Rubik", sans-serif;
-    width: 100%;
-    padding: 10px 1px;
-    border: 0;
-    border-bottom: 1px solid #747474;
+      font-family: "Rubik", sans-serif;
+     border: 0;
+    border-bottom: 1px solid #516bff;
     outline: none;
     transition: all 0.2s;
   }
@@ -57,34 +55,19 @@
     text-decoration: none;
     color: #747474;
     letter-spacing: 0.2px;
-    text-transform: uppercase;
-    display: inline-block;
+     display: inline-block;
     margin-top: 20px;
   }
   .login-form .action {
     display: flex;
     flex-direction: row;
   }
-  .login-form .action button {
-    width: 100%;
-    border: none;
-    padding: 18px;
-    font-family: "Rubik", sans-serif;
-    cursor: pointer;
-    text-transform: uppercase;
-    background: #e8e9ec;
-    color: #777;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 0;
-    letter-spacing: 0.2px;
-    outline: 0;
-    transition: all 0.3s;
-  }
+   
   .login-form .action button:hover {
-    background: #d8d8d8;
+    background: #6158e0;
   }
   .login-form .action button:nth-child(2) {
-    background: orangered;
+    background: rgb(73, 73, 73);
     color: #fff;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 4px;

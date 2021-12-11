@@ -43,13 +43,16 @@ export class StudentComponent implements OnInit {
   tasklist:any;
   allUserList:any;
   desiderReporter:boolean=true;
-  ngOnInit(): void {
+  sessionVariable:boolean=false;
+   ngOnInit(): void {
 
   }
+  
   ngAfterContentInit(data:any) 
   {
      let isLocalStorage=sessionStorage.getItem("sessionUid");
-    if(isLocalStorage!=null)
+     let isUnameLocalStorage=sessionStorage.getItem("sessionUname");
+    if(isLocalStorage!=null && isUnameLocalStorage=='student')
         this.isHidder=true;
     if(data!=null){
       this.isHidder=true;
@@ -58,7 +61,7 @@ export class StudentComponent implements OnInit {
     this._tasknestedlisted.getDetail().subscribe(
       (response) => {
         this.taskListBean=response;
-        console.log(this.taskListBean);
+        
       }
     );
     this._userService.getDetail(sessionStorage.getItem("sessionUid"),'').subscribe(
@@ -91,7 +94,7 @@ export class StudentComponent implements OnInit {
   }
   startTask(){
   }
-
+  givePermission:string='student';
     getTaskDetail(taskItem:any){
       let session=sessionStorage.getItem("sessionUid");
      console.log(this.taskQuery);
@@ -103,55 +106,32 @@ export class StudentComponent implements OnInit {
         this._httpClient.put<any>('http://localhost:8080/task/assignTask', this.taskQuery)
         .subscribe(res => alert('sucessfully added'));
    }
+
+
+
+   
    listUserCurrentTask:any;
   queryforusertask(userId:any){
     this._taskList.queryviewtasklist(userId).subscribe(
-      (response) => {
+      (response) => {        
         this.listUserCurrentTask=response;
-        alert('Succesfuly Register');
     },
     err => {
-      alert("Confirm");
+      alert("No Task Added");
     }
     );
 
   }
-  reportList:any;
-  subtasklist:any;
-  showreport(){
-    const user_id=sessionStorage.getItem("sessionUid");
-    this._reportService.genratereport(user_id).subscribe(
-      (response)=>{
-          this.reportList=response;
-          console.log('here');
-          console.log(this.reportList);
-          this._taskList.queryviewtasklist(user_id).subscribe(
-            (res)=>{
-              this.subtasklist=res;
-              console.log(this.subtasklist);
-            },
-            err=>{
-              alert('task not allocated');
-            }
-            
-          )
-
-      },
-      errr=>{
-          alert('Report Not Found/Not Report Available');
-      }
-    );
-    
-  }
+  
    onboard(param:any){
       switch(param){
         case 'view':this.showView='view';break;
         case 'home':this.showView='home';break;
         case 'add'  :this.showView='add';break;
         case 'delete' :this.showView='delete';break;
-        case 'viewTask' :this.showView='viewTask';break;
-        case 'report' :this.showView='report';this.showreport();break;
-        case 'logout' :this.showView='viewTask';sessionStorage.removeItem("sessionUid");location.reload();break;
+        case 'viewTask' :this.showView='viewTask';this.queryforusertask(sessionStorage.getItem("sessionUid"));break;
+        case 'report' :this.showView='report';break;
+        case 'logout' :this.showView='viewTask';sessionStorage.removeItem("sessionUid");sessionStorage.removeItem("sessionUname");location.reload();break;
 
       }
    }
@@ -173,6 +153,19 @@ export class StudentComponent implements OnInit {
          console.log(this.userListByID);
         } 
      );
+   }
+   indexDesider:any;
+   putstatusdata(taskItem:any,indexDesider:any){
+    taskItem.status=indexDesider;     
+    this._taskList.taskstatuschanger(taskItem).subscribe(
+     (responce)=>{ 
+       alert('Request Accepted!..');
+     },
+     err=>{
+       alert('Request Problem!  :(');
+     }
+   );
+
    }
    
  }

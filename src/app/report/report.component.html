@@ -22,40 +22,85 @@
                 </td>   
                  
                 <td class="row">
-                    <button name="editbtn" class="btn col-md-4" (click)="editDetails()"><i class="fa fa-edit"></i></button>
-                    <button name="editbtn" class="btn col-md-4" (click)="submitResult(i,userItr)"><i class="fa fa-check-square"></i></button>
-                    <button name="editbtn" class="btn col-md-4" (click)="removeReport()"><i class="fas fa-eye"></i></button>
+                    <!-- <button name="editbtn" class="btn col-md-4" (click)="editDetails()"><i class="fa fa-edit"></i></button>
+                    <button name="editbtn" class="btn col-md-4" (click)="submitResult(i,userItr)"><i class="fa fa-check-square"></i></button> -->
+                    <button name="editbtn" class="btn col-md-4" (click)="removeReport(userItr)"><i class="fas fa-eye"></i></button>
                 </td>   
             </tr>
         </tbody>
     </table>
-    <div class="login-form" [hidden]="containHider" style="margin:4%;width: 90%;">
-        <form method="post" #form="ngForm">
-           <h1>Report Details</h1>
-          <div class="content">
-              <button class="btn btn-info" style="float: left;" (click)="removeReport()">&#8249;</button>
-            <div class="input-field">
-                <input type="Task Name" placeholder="Task ID" [(ngModel)]=reportModel.id name="id" id="id" autocomplete="nope" [disabled]='true'>
+    <div class="login-form" [hidden]="containHider" style="margin:4%;width: 95%;">
+        <button class="close" style="margin: 3%;width:max-content;color: black;" (click)="removeReport('')"><i class="fa fa-times-circle"></i></button>
+
+        <div class="row gutters-sm ">
+            <div class="col-md-4 mb-3">
+              <div class="card" style="margin: 4%;">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4>{{reportModel.name}} </h4>
+                       <p class="text-secondary mb-1">{{reportModel.email}}</p>
+                       <button class="btn btn-primary" >{{reportModel.role.name}}</button>
+                     </div>
+                  </div>
+                </div>
+              </div> 
+            </div>
+            <div class="col-md-8 " >
+                <div class="card mb-3" style="margin-right: 3%;border-radius: 2px;" >
+                  <div class="card-header" style="padding: 2%;background-color: #2196F3;font-size: medium;color: white;">
+                    Report
+                  </div>
+                  <div class="card-body">
+                    
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Full Name</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                          {{reportModel.name}}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Email</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                         
+                        {{reportModel.email}}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">User Id</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                          {{reportModel.userId}}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Net Hours</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{reportModel.duration}} Min
+                      </div>
+                    </div>
+                    <hr>
+                    
+                    
+                  </div>
+                </div>
+  
+                 
+  
               </div>
-            <div class="input-field">
-              <input type="Task TransactionId" placeholder="Task Transaction ID" [(ngModel)]=reportModel.transactionId name="transactionId" id="transactionId" autocomplete="nope" [disabled]='desiderReporter'>
-            </div>
-            <div class="input-field">
-              <input type="date" placeholder="Task status" [(ngModel)]=reportModel.status name="status" id="status" autocomplete="nope" [disabled]='desiderReporter'>
-            </div>
-             <div class="input-field">
-              <input type="date" placeholder="Modified Date" [(ngModel)]=reportModel.modifiedOn name="modifiedOn" id="modifiedOn" autocomplete="new-password" [disabled]='desiderReporter'>
-            </div>
-             
-             <div class="input-field">
-              <input type="" placeholder="Task crated Date" [(ngModel)]=reportModel.cratedOn name="cratedOn" id="comment" autocomplete="nope" [disabled]='desiderReporter'>
-            </div>
-            
-          
-          </div>
-          <div class="action">
-            <button type="submit" class="btn btn-info" (click)="removeReport()" >Cancel</button>
-            <!-- <button type="submit" (click)="putDetail(this.taskModel)">Submit</button> -->
-          </div>
-        </form>
-      </div>
+       </div>
+    </div>
+
+
+      

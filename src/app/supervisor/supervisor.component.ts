@@ -25,7 +25,7 @@ export class SupervisorComponent implements OnInit {
   param:any;
   registrationHidder:boolean=false;
   freshTaskList:any;
-
+  givePermission:string='supervisor';
   userModal:any={
     userId: '',
     name: '',
@@ -56,7 +56,9 @@ export class SupervisorComponent implements OnInit {
   ngAfterContentInit(data:any) 
   {
      let isLocalStorage=sessionStorage.getItem("sessionUid");
-    if(isLocalStorage!=null)
+     let isUnameLocalStorage=sessionStorage.getItem("sessionUname");
+
+    if(isLocalStorage!=null && isUnameLocalStorage=='supervisor')
         this.isHidder=true;
     if(data!=null){
       this.isHidder=true;
@@ -101,7 +103,7 @@ export class SupervisorComponent implements OnInit {
       case 'delete' :this.showView='delete';break;
       case 'viewTask' :this.showView='viewTask';break;
       case 'report' :this.showView='report';break;
-      case 'logout' :this.showView='viewTask';sessionStorage.removeItem("sessionUid");location.reload();break;
+      case 'logout' :this.showView='viewTask';sessionStorage.removeItem("sessionUid");sessionStorage.removeItem("sessionUname");location.reload();break;
 
     }
  }

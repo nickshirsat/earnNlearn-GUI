@@ -30,73 +30,79 @@
  </nav>
  <router-outlet></router-outlet>
  </body></html> -->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to collge</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- </head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to collge</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
 <body>
-   
-   <div class="wrapper" style="background-image: url(../../assets/images/school.jpeg);background-size: contain; margin: 0px auto;">
-<!--NAVIGATION-->
-       <nav>
-          <img src="../../assets/images/earnlearnlogo.png" class="img" alt="logo" > 
-          <ul>
-             
-              <li><a class="nav-link" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">home</a></li> 
-        
-              
-              <li><a class="nav-link" routerLink="/college" routerLinkActive="active">College</a></li>
-              <li><a class="nav-link" routerLink="/tasklist" routerLinkActive="active">Task List</a></li>
-              <li><a class="nav-link" routerLink="/user/supervisor" routerLinkActive="active">Supervisor</a></li>
-              <li><a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a></li>
-              <!-- <li><a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li> -->
-          </ul>
-       </nav>
-<!--END OF NAVIGATION-->
-<label class="dropdown" style="float: right;margin-right: -450px;" >
 
-  <div class="dd-button" style="width:136px;">
-    Login
-  </div>
+  <div class="wrapper"
+    style="background-image: url(../../assets/images/school.jpeg);background-size: contain; margin: 0px auto;">
+    <!--NAVIGATION-->
+    <nav style="position: sticky;top: 0">
+      <img src="../../assets/images/earnlearnlogo.png" class="img" alt="logo">
+      <ul>
 
-  <input type="checkbox"  class="dd-input" id="test">
+        <li><a class="nav-link" routerLink="/home" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">Home</a></li>
 
-  <ul class="dd-menu" style="margin-right: 0%;">
-    <li><button class="nav-link btn" routerLink="/user/student" >Student</button></li>
-    <li><button class="nav-link btn" routerLink="/user/supervisor">Supervisor</button></li>
-    <li class="divider"></li>
-    <li>
-      <button class="nav-link btn" routerLink="/admin">Admin</button></li>
-  </ul>
-  
-</label>
-      <div class="section">
-          <h1>Education Through Self <br><sub>Social Student’s Welfare Scheme</sub> </h1>
-          <p>Earn while learn programme provides opportunities to the students to earn while they are learning through part-time jobs.</p>
-          
-          <a href="#"><button class="btn-1">GET STARTED</button></a>
-<!--FEATURES-->
-         <div class="features">
-             <button>Activities</button>
-             <button>Payments</button>
-             <button>Apply Now</button>
-             <button>Help Desk</button>
-         </div>
-<!--END OF FEATURES-->
+
+        <li><a class="nav-link" routerLink="/college" routerLinkActive="active">College</a></li>
+        <li><a class="nav-link" routerLink="/user/student" routerLinkActive="active">Student</a></li>
+        <li><a class="nav-link" routerLink="/user/supervisor" routerLinkActive="active">Supervisor</a></li>
+        <li><a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a></li>
+        <!-- <li><a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li> -->
+      </ul>
+    </nav>
+    <!--END OF NAVIGATION-->
+    <!-- <label class="dropdown" style="float: right;margin-right: -450px;">
+
+      <div class="dd-button" style="width:136px;" *ngIf='buttonHide!=null?false:true'>
+        Login
       </div>
-<!--END OF SECTION-->
-   </div>
-<!--END OF WRAPPER-->
-       <router-outlet></router-outlet>
-      
-</body>
-</html>
 
- 
+      <input type="checkbox" class="dd-input" id="test">
+
+      <ul class="dd-menu" style="margin-right: 0%;">
+        <li><button class="nav-link btn" routerLink="/user/student">Student</button></li>
+        <li><button class="nav-link btn" routerLink="/user/supervisor">Supervisor</button></li>
+        <li class="divider"></li>
+        <li>
+          <button class="nav-link btn" routerLink="/admin">Admin</button>
+        </li>
+      </ul>
+
+    </label> -->
+    <div class="section">
+      <h1>Education Through Self <br><sub>Social Student’s Welfare Scheme</sub> </h1>
+      <p>Earn while learn programme provides opportunities to the students to earn while they are learning through
+        part-time jobs.</p>
+
+      <a href="#"><button class="btn-1">GET STARTED</button></a>
+      <!--FEATURES-->
+      <!-- <div class="features" >
+        <button>Activities</button>
+        <button>Payments</button>
+        <button>Apply Now</button>
+        <button>Help Desk</button>
+      </div> -->
+      <!--END OF FEATURES-->
+    </div>
+    <!--END OF SECTION-->
+  </div>
+  <!--END OF WRAPPER-->
+  <router-outlet></router-outlet>
+
+</body>
+
+</html>

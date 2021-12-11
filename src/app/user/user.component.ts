@@ -16,7 +16,7 @@ model:userModel={
   email: '',
   name: '',
   password: '',
-  
+  role:{roleId:''},
 };
 roleModel:roleModel={
   userId: '',
@@ -26,8 +26,11 @@ roleModel:roleModel={
   role:{roleId:''},
 };
   @Output() userConfirmation:EventEmitter<string>=new EventEmitter<string>();
+  @Output() userStudentConfirmation:EventEmitter<string>=new EventEmitter<string>();
   @Output() userSupervisorConfirmation:EventEmitter<string>=new EventEmitter<string>();
-
+  @Input() hideRegistration:boolean=true;
+  @Input() givePermissionBySuper:string='supervisor';
+  @Input() givePermissionStudent:string='student';
   hideClass:boolean=false;
   ngOnInit(): void {
   }                                                            
@@ -46,6 +49,11 @@ roleModel:roleModel={
 
   registeruser(f:NgForm): void{
     let url="http://localhost:8080/user/insertUser";
+    if(this.givePermissionStudent=='student')
+      this.model.role.roleId='3';
+    else if(this.givePermissionBySuper=='supervisor')
+      this.model.role.roleId='2';
+
     this.httpClient.post(url,this.model).subscribe(
       res => {
          f.reset();
@@ -59,33 +67,59 @@ roleModel:roleModel={
     alert('Selected   '+this.model.name)
   
   }
- 
-  getDetails(userId:any,upskw:any,form:NgForm){
+   getDetails(userId:any,upskw:any,form:NgForm){
     this.userService.getDetail(userId.value,upskw.value).subscribe(
       res => {
         console.log(userId.value);
         if(res.userId==userId.value){
           if(res.password==upskw.value){
-           alert('Login Successfuly');
-           form.reset();
+            form.reset();
           //  sessionStorage.setItem("sessionUid",userId.value);
           //   this.userConfirmation.emit(userId.value);
 
-           if(res.role.roleId=='2'){
-              sessionStorage.setItem("sessionUid",userId.value);
-              this.userSupervisorConfirmation.emit(userId.value);
-              alert('Supervisor Login Only');
+          //  if(res.role.roleId==2){
+          //     sessionStorage.setItem("sessionUid",userId.value);
+          //     this.userSupervisorConfirmation.emit(userId.value);
+          //     alert('Supervisor Login Only');
+          //  }
+          //  else if(res.role.roleId==3){
+          //   sessionStorage.setItem("sessionUid",userId.value);
+          //   this.userConfirmation.emit(userId.value);
+          //   alert('Student Login Only');
+          //  }
+          //  else if(res.role.roleId==1){
+          //   sessionStorage.setItem("sessionUid",userId.value);
+          //   this.userConfirmation.emit(userId.value);
+          //   alert('Admin Login Only');
+          //  }
+           switch(res.role.roleId){
+             case 1:
+             
+             sessionStorage.setItem("sessionUid",userId.value);
+             sessionStorage.setItem("sessionUname",'admin');
+             this.userConfirmation.emit(userId.value);
+             alert('These Admin Login Only');break;
+             case 2:
+             if(this.givePermissionBySuper=='supervisor'){
+             sessionStorage.setItem("sessionUid",userId.value);
+             sessionStorage.setItem("sessionUname",'supervisor');
+             this.userSupervisorConfirmation.emit(userId.value);
+             alert('These Supervisor Login Only');
+             }else alert('Please!.. Login from correct window');
+              break;
+             
+             case 3: 
+             if(this.givePermissionStudent=='student')  {
+             sessionStorage.setItem("sessionUid",userId.value);
+             sessionStorage.setItem("sessionUname",'student');
+             this.userStudentConfirmation.emit(userId.value);
+             alert('These Student Login Only');
+            }else alert('Please!.. Login from correct window');
+
+             break;
+
            }
-           else if(res.role.roleId=='3'){
-            sessionStorage.setItem("sessionUid",userId.value);
-            this.userConfirmation.emit(userId.value);
-            alert('Student Login Only');
-           }
-           else if(res.role.roleId=='1'){
-            sessionStorage.setItem("sessionUid",userId.value);
-            this.userConfirmation.emit(userId.value);
-            alert('Admin Login Only');
-           }
+
 
           }
           else
@@ -105,6 +139,8 @@ export interface userModel{
   email:string;
   name:string;
   password:string;
+  role:{roleId:string};
+
 }
 export interface roleModel{
   userId:string;

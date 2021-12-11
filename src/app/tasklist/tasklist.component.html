@@ -13,7 +13,7 @@
       <div class="row">
         <p class="card-text" style="margin-left: 9%;">Comment : {{taskItem.comment}}</p>&nbsp;&nbsp;&nbsp;
         <p class="card-text">Quantity : {{taskItem.quantity}}</p>&nbsp;&nbsp;&nbsp;
-      <button class="button-4" role="button" (click)="clickEvent(i)" style="float: right;">Details</button>
+      <button class="btn btn-info" role="button" (click)="clickEvent(i)" style="float: right;">Details</button>
     </div>
       <div [hidden]="status" *ngIf="i==activeIndex">
         <p class="card-text" style="float: left;">{{taskItem.email}}</p>

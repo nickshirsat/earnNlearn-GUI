@@ -40,7 +40,7 @@ export class DepartmentComponent implements OnInit {
         // this.getAlluser();
       },
       err => {
-        alert("An error has occurred while sending feedback");
+        alert("Successfully Register");
       }
     );
    }
@@ -51,7 +51,7 @@ export class DepartmentComponent implements OnInit {
         // this.getAlluser();
       },
       err => {
-        alert("An error has occurred while sending feedback");
+        alert("Successfully Register");
       }
     );
    }
@@ -63,7 +63,7 @@ export class DepartmentComponent implements OnInit {
         this.departmentList.splice(i, 1);
       },
       err => {
-        alert("An error has occurred while sending feedback");
+        alert("Successfully Register");
       }
     );
   }

@@ -22,6 +22,7 @@ import { StudentdetailComponent } from './studentdetail/studentdetail.component'
 import { SupervisordetailComponent } from './supervisordetail/supervisordetail.component';
 import { ReportComponent } from './report/report.component';
 import { DepartmentComponent } from './department/department.component';
+import { ReportadminComponent } from './reportadmin/reportadmin.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DepartmentComponent } from './department/department.component';
     StudentdetailComponent,
     SupervisordetailComponent,
     ReportComponent,
-    DepartmentComponent
+    DepartmentComponent,
+    ReportadminComponent
   ],
   imports: [
     BrowserModule,
