@@ -31,7 +31,6 @@ const routes: Routes = [
   {path:'supervisordetail',component:StudentdetailComponent},
   {path:'department',component:DepartmentComponent},
   {path:'user/student',component:StudentComponent},
-  
   {path:'tasklist',component:TasklistComponent},
 
   

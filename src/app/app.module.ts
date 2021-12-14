@@ -23,6 +23,9 @@ import { SupervisordetailComponent } from './supervisordetail/supervisordetail.c
 import { ReportComponent } from './report/report.component';
 import { DepartmentComponent } from './department/department.component';
 import { ReportadminComponent } from './reportadmin/reportadmin.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import { ReportadminComponent } from './reportadmin/reportadmin.component';
     SupervisordetailComponent,
     ReportComponent,
     DepartmentComponent,
-    ReportadminComponent
+    ReportadminComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,11 @@ import { ReportadminComponent } from './reportadmin/reportadmin.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSliderModule,
+    Ng2SearchPipeModule,
+
+
   ],
   providers: [UserconnectService],
   bootstrap: [AppComponent]

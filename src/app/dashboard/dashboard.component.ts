@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
  
 @Component({
   selector: 'app-dashboard',
@@ -16,10 +16,12 @@ export class DashboardComponent implements OnInit {
   showcaseStudent:boolean=true;
   showcaseSupervisor:boolean=false;
   showcaseTask:string='task';
-  @Output() myOutput:EventEmitter<boolean>= new EventEmitter();  
+   @Output() myOutput:EventEmitter<boolean>= new EventEmitter();  
 
   //  @Output() LogoutVar=new EventEmitter< >();
    ngOnInit(): void {
+    window.location.hash = 'jump';
+
   }
   ngAfterContentInit(){
     

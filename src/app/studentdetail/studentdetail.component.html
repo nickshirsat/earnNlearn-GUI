@@ -78,11 +78,16 @@
 		</div>
     </div>
 </section> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <ng-container *ngIf="showView=='view'?true:false;">
-    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="background-color: aliceblue;"
+  <div class="search-hero">
+     <input class="form-control" type="search" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching">
+  </div>
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="background-color: rgb(255, 255, 255);"
         cellspacing="0" width="100%">
-        <thead>
+        <thead style="background-color: white;">
             <tr> 
                 <th class="th-sm">ID
                 </th>
@@ -96,7 +101,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let userItr of userList">
+            <tr *ngFor="let userItr of userList | filter:searchText">
                 <td>{{userItr.userId}}</td>
                 <td>{{userItr.name}}</td>
                 <td>{{userItr.email}}</td>
@@ -149,7 +154,7 @@
     
 </ng-container>
 <ng-container *ngIf="showView=='update'?true:false;">
-    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="background-color: aliceblue;"
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="background-color: rgb(255, 255, 255);"
         cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -181,8 +186,10 @@
     </table>
 </ng-container>
 <ng-container *ngIf="showView=='delete'?true:false;">
-    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="background-color: aliceblue;"
+  
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="background-color: rgb(254, 254, 255);"
         cellspacing="0" width="100%">
+         
         <thead>
             <tr>
                 <th class="th-sm">ID</th>

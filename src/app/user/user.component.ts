@@ -29,8 +29,8 @@ roleModel:roleModel={
   @Output() userStudentConfirmation:EventEmitter<string>=new EventEmitter<string>();
   @Output() userSupervisorConfirmation:EventEmitter<string>=new EventEmitter<string>();
   @Input() hideRegistration:boolean=true;
-  @Input() givePermissionBySuper:string='supervisor';
-  @Input() givePermissionStudent:string='student';
+  @Input() givePermissionBySuper:string=' ';
+  @Input() givePermissionStudent:string=' ';
   hideClass:boolean=false;
   ngOnInit(): void {
   }                                                            

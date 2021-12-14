@@ -13,6 +13,7 @@ export class StudentdetailComponent implements OnInit {
   registerForm:any= FormGroup;
   submitted = false;
   desider:boolean=true;
+  searchText:any;
   model:userModel={
     userId: '',
     email: '',

@@ -8,7 +8,7 @@ import { UserconnectService } from '../service/userconnect.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
+  
   constructor(private _userService:UserconnectService) { }
 
   ngOnInit(): void {

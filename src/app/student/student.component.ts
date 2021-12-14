@@ -44,6 +44,8 @@ export class StudentComponent implements OnInit {
   allUserList:any;
   desiderReporter:boolean=true;
   sessionVariable:boolean=false;
+  givePermission:string='student';
+
    ngOnInit(): void {
 
   }
@@ -94,7 +96,6 @@ export class StudentComponent implements OnInit {
   }
   startTask(){
   }
-  givePermission:string='student';
     getTaskDetail(taskItem:any){
       let session=sessionStorage.getItem("sessionUid");
      console.log(this.taskQuery);
